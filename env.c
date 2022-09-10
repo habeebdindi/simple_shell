@@ -1,8 +1,8 @@
 #include "interface.h"
 
 /**
- * _myenv - prints the current environment
- * @info: Structure,constant function prototype.
+ * _myenv - prints out the current environment of user.
+ * @info: Structure, constant function prototype.
  * Return: Always 0
  */
 int _myenv(info_t *info)
@@ -12,11 +12,11 @@ int _myenv(info_t *info)
 }
 
 /**
- * _getenv - gets the value of an environ variable
+ * _getenv - gets the value of an environment variable
  * @info: Structure,
- * @name: env var name
+ * @name: environment variable name
  *
- * Return: the value
+ * Return: the value of the environment variable
  */
 char *_getenv(info_t *info, const char *name)
 {
@@ -34,8 +34,8 @@ char *_getenv(info_t *info, const char *name)
 }
 
 /**
- * _mysetenv - Initialize a new environment variable,
- *             or modify an existing one
+ * _mysetenv - sets a new environment variable,
+ *             or edit an existing one
  * @info: Structure,
  *        constant function prototype.
  *  Return: Always 0
@@ -53,7 +53,7 @@ int _mysetenv(info_t *info)
 }
 
 /**
- * _myunsetenv - Remove an environment variable
+ * _myunsetenv - delete an environment variable
  * @info: Structure,
  *        constant function prototype.
  *  Return: Always 0
@@ -74,7 +74,7 @@ int _myunsetenv(info_t *info)
 }
 
 /**
- * populate_env_list - populates env linked list
+ * populate_env_list - fill environment linked list
  * @info: Structure,
  *          constant function prototype.
  * Return: Always 0

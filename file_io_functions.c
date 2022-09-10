@@ -1,10 +1,10 @@
 #include "interface.h"
 
 /**
- * get_history_file - gets the history file
+ * get_history_file - retrieves the history file
  * @info: parameter struct
  *
- * Return: allocated string containg history file
+ * Return: malloced string containg the history file
  */
 
 char *get_history_file(info_t *info)
@@ -25,7 +25,7 @@ char *get_history_file(info_t *info)
 }
 
 /**
- * write_history - creates a file, or appends to an existing file
+ * write_history - creates a file, or adds to an existing file
  * @info: the parameter struct
  *
  * Return: 1 on success, else -1
@@ -54,7 +54,7 @@ int write_history(info_t *info)
 }
 
 /**
- * read_history - reads history from file
+ * read_history - reads history from a file
  * @info: the parameter struct
  *
  * Return: histcount on success, 0 otherwise
@@ -103,7 +103,7 @@ int read_history(info_t *info)
 }
 
 /**
- * build_history - adds entry to a history linked list
+ * build_history - adds a new entry to a history linked list
  * @info: Structure,
  * @buf: buffer
  * @linecount: the history linecount, histcount
@@ -124,7 +124,8 @@ int build_history(info_t *info, char *buf, int linecount)
 }
 
 /**
- * renumber_history - renumbers the history linked list after changes
+ * renumber_history - changes num of the history linked list
+ * to another after changes
  * @info: Structure,
  *
  * Return: the new histcount

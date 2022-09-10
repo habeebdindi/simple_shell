@@ -1,7 +1,7 @@
 #include "interface.h"
 
 /**
- * _myhistory - displays the history list, one command by line
+ * _myhistory - shows the history list of a single command by line
  * @info: Structure,
  *        constant function prototype.
  *  Return: Always 0
@@ -13,7 +13,7 @@ int _myhistory(info_t *info)
 }
 
 /**
- * unset_alias - sets alias to string
+ * unset_alias - unsets an alias
  * @info: parameter struct
  * @str: the string alias
  *
@@ -36,9 +36,9 @@ int unset_alias(info_t *info, char *str)
 }
 
 /**
- * set_alias - sets alias to string
- * @info: parameter struct
- * @str: the string alias
+ * set_alias - initialises alias to string
+ * @info: parameter, must be a struct
+ * @str: the string alias to be initialised
  *
  * Return: Always 0 on success, 1 on error
  */
@@ -57,8 +57,8 @@ int set_alias(info_t *info, char *str)
 }
 
 /**
- * print_alias - prints an alias string
- * @node: the alias node
+ * print_alias - prints out an alias string
+ * @node: the alias node 
  *
  * Return: Always 0 on success, 1 on error
  */
@@ -80,7 +80,7 @@ int print_alias(list_t *node)
 }
 
 /**
- * _myalias - mimics the alias builtin (man alias)
+ * _myalias - imitate the alias builtin (man alias)
  * @info: Structure,
  *          constant function prototype.
  *  Return: Always 0

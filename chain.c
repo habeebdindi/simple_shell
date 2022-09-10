@@ -1,10 +1,10 @@
 #include "interface.h"
 
 /**
- * is_chain - test if current char in buffer is a chain delimeter
- * @info: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
+ * is_chain - checks if current char in buf is a chain delimeter
+ * @info: parameter, must be a struct.
+ * @buf: buffer which contains the char
+ * @p: address of buf's current position
  *
  * Return: 1 if chain delimeter, 0 otherwise
  */
@@ -36,11 +36,11 @@ int is_chain(info_t *info, char *buf, size_t *p)
 }
 
 /**
- * check_chain - checks we should continue chaining based on last status
- * @info: the parameter struct
- * @buf: the char buffer
+ * check_chain - checks if chaining could be continued based on last status
+ * @info: parameter, which must be a struct
+ * @buf: buffer holding the char
  * @p: address of current position in buf
- * @i: starting position in buf
+ * @i: 1st position in buf
  * @len: length of buf
  *
  * Return: Void
@@ -70,8 +70,8 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 }
 
 /**
- * replace_alias - replaces an aliases in the tokenized string
- * @info: the parameter struct
+ * replace_alias - replaces an aliase in the splitted string
+ * @info: parameter, which must be a struct
  *
  * Return: 1 if replaced, 0 otherwise
  */
@@ -99,10 +99,10 @@ int replace_alias(info_t *info)
 }
 
 /**
- * replace_vars - replaces vars in the tokenized string
- * @info: the parameter struct
+ * replace_vars - substitutes variables in the splitted string
+ * @info: the parameter which must be a struct
  *
- * Return: 1 if replaced, 0 otherwise
+ * Return: 1 if substituted, 0 otherwise
  */
 int replace_vars(info_t *info)
 {
@@ -140,8 +140,8 @@ int replace_vars(info_t *info)
 }
 
 /**
- * _string_replace - replaces string
- * @old: address of old string
+ * _string_replace - replaces a string
+ * @old: address of string to be replaced
  * @new: new string
  *
  * Return: 1 if replaced, 0 otherwise

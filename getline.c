@@ -1,12 +1,12 @@
 #include "interface.h"
 
 /**
- * input_buf - buffers chained commands
- * @info: parameter struct
- * @buf: address of buffer
- * @len: address of len var
+ * input_buf - buffer chained commands
+ * @info: parameter of type struct
+ * @buf: buffer address
+ * @len: address of len variable
  *
- * Return: bytes read
+ * Return: numbet of bytes read
  */
 ssize_t input_buf(info_t *info, char **buf, size_t *len)
 {
@@ -46,10 +46,10 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 }
 
 /**
- * _get_input - gets a line minus the newline
- * @info: parameter struct
+ * _get_input - gets a line without the new line character
+ * @info: parameter, which must be a struct
  *
- * Return: bytes read
+ * Return: number of bytes read
  */
 ssize_t _get_input(info_t *info)
 {
@@ -62,7 +62,7 @@ ssize_t _get_input(info_t *info)
 	r = input_buf(info, &buf, &len);
 	if (r == -1) /* EOF */
 		return (-1);
-	if (len)	/* we have commands left in the chain buffer */
+	if (len)	/* there are some commands left in the chain buffer */
 	{
 		j = i; /* init new iterator to current buf position */
 		p = buf + i; /* get pointer for return */
@@ -93,8 +93,8 @@ ssize_t _get_input(info_t *info)
 /**
  * read_buf - reads a buffer
  * @info: parameter struct
- * @buf: buffer
- * @i: size
+ * @buf: buffer to be read
+ * @i: size of buuffer
  *
  * Return: r
  */
@@ -111,9 +111,9 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
 }
 
 /**
- * _getline - gets the next line of input from STDIN
+ * _getline - gets the next line user inputed from STDIN
  * @info: parameter struct
- * @ptr: address of pointer to buffer, preallocated or NULL
+ * @ptr: address of pointer to buffer, must be preallocated or NULL
  * @length: size of preallocated ptr buffer if not NULL
  *
  * Return: s
@@ -158,7 +158,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 }
 
 /**
- * sigHandler - blocks ctrl-C
+ * sigHandler - prevents ctrl-C default work.
  * @sig_num: the signal number
  *
  * Return: void

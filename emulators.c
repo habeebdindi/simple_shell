@@ -1,10 +1,10 @@
 #include "interface.h"
 
 /**
- * _cust_exit - exits the shell
+ * _cust_exit - exits the simple_shell
  * @info: Structure,
  *          constant function prototype.
- *  Return: exits with a given exit status
+ *  Return: exits the shell with a specific exit status
  *         (0) if info.argv[0] != "exit"
  */
 int _cust_exit(info_t *info)
@@ -30,7 +30,7 @@ int _cust_exit(info_t *info)
 }
 
 /**
- * _cust_cd - changes the current directory of the process
+ * _cust_cd - changes the current directory of the current process
  * @info: Structure,
  *          constant function prototype.
  *  Return: Always 0
@@ -80,7 +80,7 @@ int _cust_cd(info_t *info)
 }
 
 /**
- * _cust_help - changes the current directory of the process
+ * _cust_help - changes the current directory of the current process
  * @info: Structure,
  *          constant function prototype.
  *  Return: Always 0

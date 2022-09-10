@@ -49,13 +49,13 @@ int hsh(info_t *info, char **av)
 
 
 /**
- * find_builtin - finds a builtin command
+ * find_builtin - looks for a builtin command
  * @info: the parameter & return info struct
  *
  * Return: -1 if builtin not found,
- *			0 if builtin executed successfully,
- *			1 if builtin found but not successful,
- *			-2 if builtin signals exit()
+ *		0 if builtin found and executed successfully,
+ *		1 if builtin found but not successfully executed,
+ *		-2 if builtin signals exit()
  */
 int find_builtin(info_t *info)
 {
@@ -84,7 +84,7 @@ int find_builtin(info_t *info)
 }
 
 /**
- * find_cmd - finds a command in PATH
+ * find_cmd - finds a command in PATH variable of environment
  * @info: the parameter & return info struct
  *
  * Return: void
@@ -126,7 +126,7 @@ void find_cmd(info_t *info)
 }
 
 /**
- * fork_cmd - forks a an exec thread to run cmd
+ * fork_cmd - forks a an execve thread to run cmd
  * @info: the parameter & return info struct
  *
  * Return: void

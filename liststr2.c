@@ -1,7 +1,7 @@
 #include "interface.h"
 
 /**
- * list_len - determines length of linked list
+ * list_len - determines the length of a linked list
  * @h: pointer to first node
  *
  * Return: size of list
@@ -19,7 +19,7 @@ size_t list_len(const list_t *h)
 }
 
 /**
- * list_to_strings - returns an array of strings of the list->str
+ * list_to_strings - returns an array of strings of the list->str node field
  * @head: pointer to first node
  *
  * Return: array of strings
@@ -79,10 +79,10 @@ size_t print_list(const list_t *h)
 }
 
 /**
- * node_starts_with - returns node whose string starts with prefix
+ * node_starts_with - returns node whose string starts with a prefix
  * @node: pointer to list head
- * @prefix: string to match
- * @c: the next character after prefix to match
+ * @prefix: string to match in the list
+ * @c: the succeeding character after prefix to match
  *
  * Return: match node or null
  */
@@ -103,7 +103,7 @@ list_t *node_starts_with(list_t *node, char *prefix, char c)
 /**
  * get_node_index - gets the index of a node
  * @head: pointer to list head
- * @node: pointer to the node
+ * @node: pointer to the node whose index is to be gotten
  *
  * Return: index of node or -1
  */

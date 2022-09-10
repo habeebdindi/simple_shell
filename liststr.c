@@ -1,12 +1,12 @@
 #include "interface.h"
 
 /**
- * add_node - adds a node to the start of the list
+ * add_node - adds a node to the start of the lnked list
  * @head: address of pointer to head node
- * @str: str field of node
+ * @str: string field of the node
  * @num: node index used by history
  *
- * Return: size of list
+ * Return: size of the linked list
  */
 list_t *add_node(list_t **head, const char *str, int num)
 {
@@ -34,9 +34,9 @@ list_t *add_node(list_t **head, const char *str, int num)
 }
 
 /**
- * add_node_end - adds a node to the end of the list
+ * add_node_end - appends a node to the end of the list
  * @head: address of pointer to head node
- * @str: str field of node
+ * @str: string field of the node
  * @num: node index used by history
  *
  * Return: size of list
@@ -75,7 +75,7 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 }
 
 /**
- * print_list_str - prints only the str element of a list_t linked list
+ * print_list_str - prints only the string element of a list_t linked list
  * @h: pointer to first node
  *
  * Return: size of list
@@ -95,7 +95,7 @@ size_t print_list_str(const list_t *h)
 }
 
 /**
- * delete_node_at_index - deletes node at given index
+ * delete_node_at_index - removes node at specified index
  * @head: address of pointer to first node
  * @index: index of node to delete
  *
@@ -136,7 +136,7 @@ int delete_node_at_index(list_t **head, unsigned int index)
 
 
 /**
- * free_list - frees all nodes of a list
+ * free_list - frees all the nodes of a list
  * @head_ptr: address of pointer to head node
  *
  * Return: void

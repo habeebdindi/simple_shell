@@ -1,7 +1,7 @@
 #include "interface.h"
 
 /**
- * get_environ - returns the string array copy of our environ
+ * get_environ - returns a string array which is a copy of our environ
  * @info: Structure,
  *          constant function prototype.
  * Return: Always 0
@@ -18,10 +18,10 @@ char **get_environ(info_t *info)
 }
 
 /**
- * _unsetenv - Remove an environment variable
+ * _unsetenv - delete an environment variable
  * @info: Structure,
  *        constant function prototype.
- *  Return: 1 on delete, 0 otherwise
+ *  Return: 1 on removal, 0 if removal failed
  * @var: the string env var property
  */
 int _unsetenv(info_t *info, char *var)
@@ -50,12 +50,12 @@ int _unsetenv(info_t *info, char *var)
 }
 
 /**
- * _setenv - Initialize a new environment variable,
- *             or modify an existing one
+ * _setenv - sets a new environment variable,
+ *             or edit an existing one.
  * @info: Structure,
  *        constant function prototype.
- * @var: the string env var property
- * @value: the string env var value
+ * @var: the string environment variable property
+ * @value: the string environment variable value
  *  Return: Always 0
  */
 int _setenv(info_t *info, char *var, char *value)
