@@ -22,20 +22,16 @@ void fork_pass(char *input, char *av0)
                 free(input);
                 exit(EXIT_FAILURE);
         }
-
         token = strtok(in_copy, " ");
         for (i = 1; token != NULL; i++)
                 token = strtok(NULL, " ");
-
         free(in_copy);
-
         argv = malloc(sizeof(char *) * (i + 1));
         if (!argv)
         {
                 free(input);
                 exit(EXIT_FAILURE);
         }
-
         token = strtok(input, " ");
         for (i = 0; token != NULL; i++)
         {
