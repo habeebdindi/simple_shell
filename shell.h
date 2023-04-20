@@ -14,4 +14,7 @@ void getinput(char **input, size_t *n);
 void forkcheck_fail(pid_t child, char *input);
 void fork_pass(char *input, char *av0);
 
+char *_strcpy(char *dest, char *src);
+int _strlen(char *s);
+
 #endif /* MAIN_H */
