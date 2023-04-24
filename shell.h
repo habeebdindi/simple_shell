@@ -12,7 +12,9 @@
 void print_prompt(char *prompt);
 void getinput(char **input, size_t *n);
 void forkcheck_fail(pid_t child, char *input);
-void fork_pass(char *input, char *av0);
+char **parser(char *input);
+void free_argv(char **argv);
+void execute_command(char **argv, char *av0, char *input);
 
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
