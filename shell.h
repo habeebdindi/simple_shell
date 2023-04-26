@@ -15,12 +15,16 @@ extern char **environ;
 
 void _exitt(char *command);
 
+char *_memset(char *s, char b, unsigned int n);
+
 void print_prompt(char *prompt);
 void getinput(char **input, size_t *n);
-void forkcheck_fail(pid_t child, char *input);
+
 char **parser(char *input);
-void free_argv(char **argv);
+void forkcheck_fail(pid_t child, char *input);
 void execute_command(char **argv, char *av0, char *input, char *c);
+void free_argv(char **argv);
+
 void print_env(char **env);
 
 char *getpath(char *command);
