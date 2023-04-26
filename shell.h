@@ -29,6 +29,8 @@ int _envv(char **argv);
 
 char *getpath(char *command);
 
+char* itoa(int i, char b[]);
+
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
 char *_strdup(char *str);
