@@ -17,4 +17,3 @@ void _exitt(char **argv, char *input)
 		exit(0);
 	}
 }
-
