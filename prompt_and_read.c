@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * print_prompt - prints prompt to the user
  * @prompt: array containing prompt to be printed
@@ -13,7 +14,6 @@ void print_prompt(char *prompt)
 		fflush(stdout);
 	}
 }
-
 /**
  * getinput - gets input from the user
  * @n: size of the buffer storing the input
