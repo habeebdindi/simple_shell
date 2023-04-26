@@ -19,6 +19,12 @@ int main(__attribute__((unused)) int ac, char **av)
 		argv = parser(input);
 		if (!argv)
 			continue;
+		else if (_strcmp(argv[0], "env") == 0 && argv[1] == NULL)
+		{
+			print_env(environ);
+			free_argv(argv);
+			continue;
+		}
 		c = getpath(argv[0]);
 		if (!c)
 		{
