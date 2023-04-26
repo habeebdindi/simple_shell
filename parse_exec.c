@@ -8,7 +8,7 @@ char **parser(char *input)
 {
 	char *in_copy, *token, **argv;
 	int i, j;
-	
+
 	input[_strlen(input) - 1] = '\0';
 	in_copy = _strdup(input);
 	if (!in_copy)
@@ -25,7 +25,7 @@ char **parser(char *input)
 	token = strtok(input, " ");
 	for (i = 0; token != NULL; i++)
 	{
-		argv[i] = malloc(strlen(token) + 1);
+		argv[i] = malloc(_strlen(token) + 1);
 		if (!argv[i])
 		{
 			for (j = i - 1; j >= 0; j--)
