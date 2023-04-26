@@ -13,29 +13,29 @@ char *getpath(char *command)
 		return (NULL);
 	if (access(command, F_OK) == 0)
 	{
-		fullpath = malloc(strlen(command) + 1);
+		fullpath = malloc(_strlen(command) + 1);
 		if (!fullpath)
 			return (NULL);
-		strcpy(fullpath, command);
+		_strcpy(fullpath, command);
 		return (fullpath);
 	}
 	path = getenv("PATH");
-	path_copy = malloc(strlen(path) + 1);
+	path_copy = malloc(_strlen(path) + 1);
 	if (!path_copy)
 		return (NULL);
-	strcpy(path_copy, path);
+	_strcpy(path_copy, path);
 	dir = strtok(path_copy, ":");
 	while (dir != NULL)
 	{
-		fullpath = malloc(strlen(command) + strlen(dir) + 2);
+		fullpath = malloc(_strlen(command) + _strlen(dir) + 2);
 		if (!fullpath)
 		{
 			free(path_copy);
 			return (NULL);
 		}
-		strcpy(fullpath, dir);
-		strcat(fullpath, "/");
-		strcat(fullpath, command);
+		_strcpy(fullpath, dir);
+		_strcat(fullpath, "/");
+		_strcat(fullpath, command);
 		if (access(fullpath, F_OK) == 0)
 		{
 			free(path_copy);

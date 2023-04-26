@@ -8,9 +8,9 @@ char **parser(char *input)
 {
 	char *in_copy, *token, **argv;
 	int i, j;
-
-	input[strcspn(input, "\n")] = '\0';
-	in_copy = strdup(input);
+	
+	input[_strlen(input) - 1] = '\0';
+	in_copy = _strdup(input);
 	if (!in_copy)
 		return (NULL);
 
@@ -33,7 +33,7 @@ char **parser(char *input)
 			free(argv);
 			return (NULL);
 		}
-		strcpy(argv[i], token);
+		_strcpy(argv[i], token);
 		token = strtok(NULL, " ");
 	}
 	argv[i] = NULL;
