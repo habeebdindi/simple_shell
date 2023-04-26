@@ -19,6 +19,8 @@ int main(__attribute__((unused)) int ac, char **av)
 		argv = parser(input);
 		if (!argv)
 			continue;
+		if (_envv(argv))
+			continue;
 		_exitt(argv, input);
 		c = getpath(argv[0]);
 		if (!c)
