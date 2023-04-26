@@ -13,6 +13,8 @@
 
 extern char **environ;
 
+char *_memset(char *s, char b, unsigned int n);
+
 void _exitt(char **argv, char *input);
 
 void print_prompt(char *prompt);
