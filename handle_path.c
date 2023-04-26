@@ -4,15 +4,24 @@ char *getpath(char *command)
 {
 	char *path, *path_copy, *dir, *fullpath;
 
-	if (!command)
-		return (NULL);
+	/* Check if the command is already a full path */
+	if (access(command, F_OK) == 0)
+	{
+		/* Command is already a full path */
+		fullpath = malloc(strlen(command) + 1);
+		if (!fullpath)
+			return (NULL);
+		strcpy(fullpath, command);
+		return (fullpath);
+	}
+	/* Command is not a full path, search for it in PATH directories */
 	path = getenv("PATH");
 	path_copy = malloc(strlen(path) + 1);
 	if (!path_copy)
 		return (NULL);
 	strcpy(path_copy, path);
 	dir = strtok(path_copy, ":");
-	while(dir != NULL)
+	while (dir != NULL)
 	{
 		fullpath = malloc(strlen(command) + strlen(dir) + 2);
 		if (!fullpath)
