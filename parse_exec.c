@@ -22,39 +22,58 @@ char **parser(char *input)
 	argv = malloc(sizeof(char *) * (i + 1));
 	if (!argv)
 		return (NULL);
-
-	token = strtok(input, " ");
-	for (i = 0; token != NULL; i++)
+        token = strtok(input, " ");
+        for (i = 0; token != NULL; i++)
+        {
+                argv[i] = malloc(strlen(token) + 1);
+                if (!argv[i])
+                {
+                        for (j = i - 1; j >= 0; j--)
+                                free(argv[j]);
+                        free(argv);
+        		return (NULL);
+                }
+                strcpy(argv[i], token);
+                token = strtok(NULL, " ");
+        }
+        argv[i] = NULL;
+	if (!argv)
 	{
-		argv[i] = malloc(strlen(token) + 1);
-		if (!argv[i])
-		{
-			for (j = i - 1; j >= 0; j--)
-				free(argv[j]);
-			free(argv);
-			return (NULL);
-		}
-		strcpy(argv[i], token);
-		token = strtok(NULL, " ");
+		free(input);
+		return (NULL);
 	}
-	argv[i] = NULL;
 	return (argv);
 }
 
-/**
- * execute_command - executes commands passed by the user.
- * @argv: array of pointers to parsed input.
- * @av0: program name.
- * @input: command typed in by user.
- * Return: void.
- */
-void execute_command(char **argv, char *av0, char *input)
+void execute_command(char **argv, char *av0, char *input, char *c)
 {
-	char **envp = {NULL};
+	int status;
+	pid_t child;
 
-	execve(argv[0], argv, envp);
-	perror(av0);
-	free_argv(argv);
-	free(input);
-	exit(EXIT_FAILURE);
+	child = fork();
+
+	forkcheck_fail(child, input);
+	if (child == 0)
+	{
+		argv[0] = c;
+		execve(argv[0], argv, environ);
+	        perror(av0);
+	        free_argv(argv);
+	        free(input);
+	        exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(&status);
+		free(c);
+		free_argv(argv);
+        }
+}
+
+void print_env(char **env)
+{
+	while (*env != NULL)
+	{
+		printf("%s\n", *env++);
+	}
 }
