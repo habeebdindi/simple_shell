@@ -96,8 +96,7 @@ void print_env(char **env)
 /**
  * _envv - checks if the user has entered the env command builtin.
  * @argv: array of pointers to parsed input.
- * Return: 0 if env is not detected,
-           1 if detected.
+ * Return: 0 if env is not detected, 1 if detected.
  */
 int _envv(char **argv)
 {
