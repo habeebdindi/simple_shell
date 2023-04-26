@@ -27,9 +27,11 @@ int main(__attribute__((unused)) int ac, char **av)
 		{
 			_memset(error_message, 0, sizeof(error_message));
 			snprintf(error_message, sizeof(error_message),
-					"%s: %ld: %s: command not found\n", av[0], ++i, argv[0]);
+					"%s: %ld: %s: not found", av[0], ++i, argv[0]);
 			message_length = strlen(error_message);
 			write(STDERR_FILENO, error_message, message_length);
+			if (isatty(0))
+				write(STDERR_FILENO, "\n", _strlen("\n"));
 			free_argv(argv);
 			continue;
 		}
