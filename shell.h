@@ -13,6 +13,8 @@
 
 extern char **environ;
 
+void _exitt(char *command);
+
 void print_prompt(char *prompt);
 void getinput(char **input, size_t *n);
 void forkcheck_fail(pid_t child, char *input);
