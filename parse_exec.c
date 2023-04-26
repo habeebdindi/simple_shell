@@ -87,6 +87,7 @@ void print_env(char **env)
 {
 	while (*env != NULL)
 	{
-		printf("%s\n", *env++);
+		write(STDOUT_FILENO, *env, strlen(*env));
+		env++;
 	}
 }

@@ -6,9 +6,10 @@
  */
 void print_prompt(char *prompt)
 {
-	if (isatty(0) == 1)
+	signal(SIGINT, SIG_IGN);
+	if (isatty(0))
 	{
-		printf("%s", prompt);
+		write(STDOUT_FILENO, prompt, strlen(prompt));
 		fflush(stdout);
 	}
 }
@@ -23,6 +24,7 @@ void getinput(char **input, size_t *n)
 {
 	if (getline(input, n, stdin) == -1)
 	{
+		write(STDERR_FILENO, "\n", strlen("\n"));
 		free(*input);
 		exit(EXIT_FAILURE);
 	}

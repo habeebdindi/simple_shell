@@ -7,11 +7,9 @@
  */
 int main(__attribute__((unused)) int ac, char **av)
 {
-	char *prompt = "#cisfun$ ", *c, *input = NULL, **argv;
-	size_t n = 0;
+	char *prompt = "#cisfun$ ", *c, error_message[200], *input = NULL, **argv;
+	size_t n = 0, message_length;
 
-	if (isatty(0) == 0)
-		printf("%s", prompt);
 	while (1)
 	{
 		print_prompt(prompt);
@@ -22,6 +20,10 @@ int main(__attribute__((unused)) int ac, char **av)
 		c = getpath(argv[0]);
 		if (!c)
 		{
+		        memset(error_message, 0, sizeof(error_message));
+			snprintf(error_message, sizeof(error_message), "%s: %d: %s: command not found\n", av[0], __LINE__, argv[0]);
+			message_length = strlen(error_message);
+			write(STDERR_FILENO, error_message, message_length);
 			free_argv(argv);
 			continue;
 		}
