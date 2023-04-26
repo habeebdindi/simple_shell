@@ -11,12 +11,15 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+extern char **environ;
+
 void print_prompt(char *prompt);
 void getinput(char **input, size_t *n);
 void forkcheck_fail(pid_t child, char *input);
 char **parser(char *input);
 void free_argv(char **argv);
 void execute_command(char **argv, char *av0, char *input, char *c);
+void print_env(char **env);
 
 char *getpath(char *command);
 
