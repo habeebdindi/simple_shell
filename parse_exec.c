@@ -34,16 +34,43 @@ char **parser(char *input)
                 token = strtok(NULL, " ");
         }
         argv[i] = NULL;
+	if (!argv)
+	{
+		free(input);
+		return (NULL);
+	}
 	return (argv);
 }
 
-void execute_command(char **argv, char *av0, char *input)
+void execute_command(char **argv, char *av0, char *input, char *c)
 {
-	char **envp = {NULL};
+	int status;
+	pid_t child;
 
-        execve(argv[0], argv, envp);
-        perror(av0);
-        free_argv(argv);
-        free(input);
-        exit(EXIT_FAILURE);
+	child = fork();
+
+	forkcheck_fail(child, input);
+	if (child == 0)
+	{
+		argv[0] = c;
+		execve(argv[0], argv, environ);
+	        perror(av0);
+	        free_argv(argv);
+	        free(input);
+	        exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(&status);
+		free(c);
+		free_argv(argv);
+        }
+}
+
+void print_env(char **env)
+{
+	while (*env != NULL)
+	{
+		printf("%s\n", *env++);
+	}
 }
