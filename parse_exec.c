@@ -22,21 +22,21 @@ char **parser(char *input)
 	argv = malloc(sizeof(char *) * (i + 1));
 	if (!argv)
 		return (NULL);
-        token = strtok(input, " ");
-        for (i = 0; token != NULL; i++)
-        {
-                argv[i] = malloc(strlen(token) + 1);
-                if (!argv[i])
-                {
-                        for (j = i - 1; j >= 0; j--)
-                                free(argv[j]);
-                        free(argv);
-        		return (NULL);
-                }
-                strcpy(argv[i], token);
-                token = strtok(NULL, " ");
-        }
-        argv[i] = NULL;
+	token = strtok(input, " ");
+	for (i = 0; token != NULL; i++)
+	{
+		argv[i] = malloc(strlen(token) + 1);
+		if (!argv[i])
+		{
+			for (j = i - 1; j >= 0; j--)
+				free(argv[j]);
+			free(argv);
+			return (NULL);
+		}
+		strcpy(argv[i], token);
+		token = strtok(NULL, " ");
+	}
+	argv[i] = NULL;
 	if (!argv)
 	{
 		free(input);
@@ -45,6 +45,14 @@ char **parser(char *input)
 	return (argv);
 }
 
+/**
+ * execute_command - executes commands.
+ * @argv: array of pointers to parsed input.
+ * @av0: name of the shell program.
+ * @input: buffer containing input.
+ * @c: pointer to the full path of command.
+ * Return: void.
+ */
 void execute_command(char **argv, char *av0, char *input, char *c)
 {
 	int status;
@@ -57,23 +65,27 @@ void execute_command(char **argv, char *av0, char *input, char *c)
 	{
 		argv[0] = c;
 		execve(argv[0], argv, environ);
-	        perror(av0);
-	        free_argv(argv);
-	        free(input);
-	        exit(EXIT_FAILURE);
+		perror(av0);
+		free_argv(argv);
+		free(input);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		wait(&status);
 		free(c);
 		free_argv(argv);
-        }
+	}
 }
 
+/**
+ * print_env - prints the enviromanet variables.
+ * @env: an array of pointers to the env variables.
+ * Return: void.
+ */
 void print_env(char **env)
 {
 	while (*env != NULL)
 	{
 		printf("%s\n", *env++);
 	}
-}
