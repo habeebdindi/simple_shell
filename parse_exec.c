@@ -37,9 +37,9 @@ char **parser(char *input)
 		token = strtok(NULL, " ");
 	}
 	argv[i] = NULL;
-	if (!argv)
+	if (!argv[0])
 	{
-		free(input);
+		free_argv(argv);
 		return (NULL);
 	}
 	return (argv);
@@ -89,3 +89,4 @@ void print_env(char **env)
 	{
 		printf("%s\n", *env++);
 	}
+}
