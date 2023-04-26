@@ -55,8 +55,6 @@ int _strcmp(char *s1, char *s2)
 	return (ret);
 }
 
-#include "main.h"
-
 /**
  * _strcat - Concatenates two strings.
  * @dest: Destination string.
