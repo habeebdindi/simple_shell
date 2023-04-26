@@ -90,4 +90,5 @@ void print_env(char **env)
 		write(STDOUT_FILENO, *env, strlen(*env));
 		env++;
 	}
+	write(STDOUT_FILENO, "\n", strlen("\n"));
 }
