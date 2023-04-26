@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * getpath - gets the full path of a file.
+ * @command: array which holds the command typed by user.
+ * Return: char pointer
+ */
 char *getpath(char *command)
 {
 	char *path, *path_copy, *dir, *fullpath;
