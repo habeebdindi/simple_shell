@@ -25,7 +25,7 @@ int main(__attribute__((unused)) int ac, char **av)
 		c = getpath(argv[0]);
 		if (!c)
 		{
-			memset(error_message, 0, sizeof(error_message));
+			_memset(error_message, 0, sizeof(error_message));
 			snprintf(error_message, sizeof(error_message),
 					"%s: %ld: %s: command not found\n", av[0], ++i, argv[0]);
 			message_length = strlen(error_message);
