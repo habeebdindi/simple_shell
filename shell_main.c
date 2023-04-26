@@ -9,7 +9,8 @@ void sigint_handler(int signo);
 
 int main(__attribute__((unused)) int ac, char **av)
 {
-	char *prompt = "#cisfun$ ", *c, error_message[200], *input = NULL, **argv;
+	char *prompt = "#cisfun$ ", *c, i_buf[100], error_message[400];
+	char *input = NULL, **argv;
 	size_t n = 0, message_length, i = 0;
 
 	while (1)
@@ -25,9 +26,15 @@ int main(__attribute__((unused)) int ac, char **av)
 		c = getpath(argv[0]);
 		if (!c)
 		{
+			_memset(i_buf, 0, sizeof(i_buf));
 			_memset(error_message, 0, sizeof(error_message));
-			snprintf(error_message, sizeof(error_message),
-					"%s: %ld: %s: not found", av[0], ++i, argv[0]);
+			_strcpy(error_message, av[0]);
+			_strcat(error_message, ": ");
+			_strcat(error_message, itoa(++i, i_buf));
+			_strcat(error_message, ": ");
+			_strcat(error_message, argv[0]);
+			_strcat(error_message, ": ");
+			_strcat(error_message, "not found");
 			message_length = strlen(error_message);
 			write(STDERR_FILENO, error_message, message_length);
 			if (isatty(0))
