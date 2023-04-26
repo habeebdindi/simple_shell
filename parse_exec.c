@@ -92,3 +92,19 @@ void print_env(char **env)
 	}
 	write(STDOUT_FILENO, "\n", strlen("\n"));
 }
+
+/**
+ * _envv - checks if the user has entered the env command builtin.
+ * @argv: array of pointers to parsed input.
+ * Return: 0 if env is not detected, 1 if detected.
+ */
+int _envv(char **argv)
+{
+	if (_strcmp(argv[0], "env") == 0 && argv[1] == NULL)
+	{
+		print_env(environ);
+		free_argv(argv);
+		return (1);
+	}
+	return (0);
+}

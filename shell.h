@@ -13,7 +13,7 @@
 
 extern char **environ;
 
-void _exitt(char *command);
+void _exitt(char **argv, char *input);
 
 char *_memset(char *s, char b, unsigned int n);
 
@@ -23,9 +23,11 @@ void getinput(char **input, size_t *n);
 char **parser(char *input);
 void forkcheck_fail(pid_t child, char *input);
 void execute_command(char **argv, char *av0, char *input, char *c);
+
 void free_argv(char **argv);
 
 void print_env(char **env);
+int _envv(char **argv);
 
 char *getpath(char *command);
 

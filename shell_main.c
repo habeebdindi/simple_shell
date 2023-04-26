@@ -19,17 +19,15 @@ int main(__attribute__((unused)) int ac, char **av)
 		argv = parser(input);
 		if (!argv)
 			continue;
-		else if (_strcmp(argv[0], "env") == 0 && argv[1] == NULL)
-		{
-			print_env(environ);
-			free_argv(argv);
+		if (_envv(argv))
 			continue;
-		}
+		_exitt(argv, input);
 		c = getpath(argv[0]);
 		if (!c)
 		{
-		        memset(error_message, 0, sizeof(error_message));
-			snprintf(error_message, sizeof(error_message), "%s: %ld: %s: command not found\n", av[0], ++i, argv[0]);
+			memset(error_message, 0, sizeof(error_message));
+			snprintf(error_message, sizeof(error_message),
+					"%s: %ld: %s: command not found\n", av[0], ++i, argv[0]);
 			message_length = strlen(error_message);
 			write(STDERR_FILENO, error_message, message_length);
 			free_argv(argv);
