@@ -24,7 +24,8 @@ void getinput(char **input, size_t *n)
 {
 	if (getline(input, n, stdin) == -1)
 	{
-		write(STDERR_FILENO, "\n", strlen("\n"));
+		if (isatty(0))
+			write(STDERR_FILENO, "\n", strlen("\n"));
 		free(*input);
 		exit(EXIT_FAILURE);
 	}
