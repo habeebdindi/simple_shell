@@ -87,10 +87,10 @@ void print_env(char **env)
 {
 	while (*env != NULL)
 	{
-		write(STDOUT_FILENO, *env, strlen(*env));
+		write(STDOUT_FILENO, *env, _strlen(*env));
 		env++;
 	}
-	write(STDOUT_FILENO, "\n", strlen("\n"));
+	write(STDOUT_FILENO, "\n", _strlen("\n"));
 }
 
 /**
