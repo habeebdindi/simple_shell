@@ -1,5 +1,4 @@
 #include "shell.h"
-void sigint_handler(int signo);
 /**
  * main - main function for the shell.
  * @ac: argument count.
@@ -13,6 +12,7 @@ int main(__attribute__((unused)) int ac, char **av)
 	char *input = NULL, **argv;
 	size_t n = 0, message_length, i = 0;
 
+	signal(SIGINT, SIG_IGN);
 	while (1)
 	{
 		print_prompt(prompt);

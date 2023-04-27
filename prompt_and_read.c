@@ -7,7 +7,6 @@
  */
 void print_prompt(char *prompt)
 {
-	signal(SIGINT, SIG_IGN);
 	if (isatty(0))
 	{
 		write(STDOUT_FILENO, prompt, strlen(prompt));
