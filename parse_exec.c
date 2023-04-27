@@ -68,11 +68,17 @@ void execute_command(char **argv, char *av0, char *input, char *c)
 		perror(av0);
 		free_argv(argv);
 		free(input);
-		exit(EXIT_FAILURE);
+		exit(127);
 	}
 	else
 	{
 		wait(&status);
+		if (WIFEXITED(status))
+		{
+			/* printf("child proc exited with status: %d\n", WEXITSTATUS(status)); */
+			if (!isatty(0))
+				exit(WEXITSTATUS(status));
+		}
 		free(c);
 		free_argv(argv);
 	}
