@@ -77,6 +77,8 @@ char *fullpath_cmd(char *command)
 {
 	char *fullpath;
 
+	if (!getenv("PATH"))
+		return (NULL);
 	fullpath = malloc(_strlen(command) + 1);
 	if (!fullpath)
 		return (NULL);
