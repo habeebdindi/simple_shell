@@ -24,7 +24,8 @@ char *getinput(void);
 void forkcheck_fail(pid_t child, char *input);
 char **parser(char *input);
 void free_argv(char **argv);
-void execute_command(char **argv, char *av0, char *input, int *status, char *c);
+void execute_command(char **argv, char *av0, char *input, int *status,
+		     char *c);
 
 void err_clean(int *i, char *av0, char *input, char **argv);
 
