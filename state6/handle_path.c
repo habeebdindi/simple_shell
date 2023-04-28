@@ -54,7 +54,6 @@ char *getpath(char *command)
  * @av0: the name of the shell program.
  * @argv: parsed user input.
  * @input: user input to shell.
- * @status: execution status.
  * Return: void.
  */
 void err_clean(int *i, char *av0, char *input, char **argv, int *status)
