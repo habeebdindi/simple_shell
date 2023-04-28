@@ -15,28 +15,22 @@ void print_prompt(char *prompt)
 }
 /**
  * getinput - gets input from the user
+ * @n: size of the buffer storing the input
+ * @input: buffer where input is stored
  * Return: void
  */
 char *getinput(void)
 {
 	char *line = NULL;
 	size_t n = 0;
-
 	if (getline(&line, &n, stdin) == -1)
 	{
 		if (feof(stdin))
 		{
 			if (isatty(0))
-			{
-				free(line);
 				write(STDERR_FILENO, "\n", strlen("\n"));
-				exit(EXIT_SUCCESS);
-			}
-			else
-			{
-				free(line);
-				return (NULL);
-			}
+			free(line);
+			exit(EXIT_SUCCESS);
 		}
 		else
 		{
@@ -45,5 +39,11 @@ char *getinput(void)
 			exit(EXIT_FAILURE);
 		}
 	}
+	printf("line: %s\n", line);
 	return (line);
 }
+
+/* void print_prompt2(void) */
+/* { */
+/* 	write(STDERR_FILENO, "> ", _strlen("> ")); */
+/* } */

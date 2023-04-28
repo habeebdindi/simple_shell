@@ -7,13 +7,17 @@
  */
 int main(__attribute__((unused)) int ac, char **av)
 {
-	int loop_track = 0;
-
 	signal(SIGINT, SIG_IGN);
 	while (1)
 	{
-		mode_run(av[0], &loop_track);
-		loop_track++;
+		mode_run(av[0]);
+		/* _exitt(argv, input); */
+		/* c = getpath(argv[0]); */
+		/* if (!c) */
+		/* { */
+		/* 	err_clean(&i, av[0], argv); */
+		/* 	continue; */
+		/* } */
 	}
 	return (0);
 }

@@ -23,12 +23,6 @@ char **parser(char *input)
 		token = strtok(NULL, TOK_DELIM);
 	}
 	argv[index] = NULL;
-	if (!argv[0])
-	{
-		free(argv);
-		free(input);
-		return (NULL);
-	}
 	return (argv);
 }
 
@@ -38,11 +32,11 @@ char **parser(char *input)
  * @av0: name of the shell program.
  * @input: buffer containing input.
  * @c: pointer to the full path of command.
- * @status: exit status of child proc will be stored here.
  * Return: void.
  */
-void execute_command(char **argv, char *av0, char *input, int *status, char *c)
+void execute_command(char **argv, char *av0, char *input/* , char *c */)
 {
+	int status;
 	pid_t child;
 
 	child = fork();
@@ -50,22 +44,27 @@ void execute_command(char **argv, char *av0, char *input, int *status, char *c)
 	forkcheck_fail(child, input);
 	if (child == 0)
 	{
-		argv[0] = c;
+		/* argv[0] = c; */
 		execve(argv[0], argv, environ);
 		perror(av0);
 		free(argv);
 		free(input);
-		free(c);
-		exit(EXIT_FAILURE);
+		exit(127);
 	}
 	else
 	{
-		wait(status);
-		if (WIFEXITED(*status))
-			*status = WEXITSTATUS(*status);
-		free(argv);
+		wait(&status);
+
+		if (WIFEXITED(status))
+			if (!isatty(0))
+			{
+			        free(argv);
+				free(input);
+				return;
+			}
+        	free(argv);
 		free(input);
-		free(c);
+		/* free(c); */
 	}
 }
 

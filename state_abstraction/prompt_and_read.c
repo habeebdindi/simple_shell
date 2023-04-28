@@ -15,6 +15,8 @@ void print_prompt(char *prompt)
 }
 /**
  * getinput - gets input from the user
+ * @n: size of the buffer storing the input
+ * @input: buffer where input is stored
  * Return: void
  */
 char *getinput(void)
@@ -47,3 +49,7 @@ char *getinput(void)
 	}
 	return (line);
 }
+/* void print_prompt2(void) */
+/* { */
+/* 	write(STDERR_FILENO, "> ", _strlen("> ")); */
+/* } */
