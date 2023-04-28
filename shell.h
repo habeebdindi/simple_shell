@@ -51,9 +51,9 @@ int num_builtins(void);
 int handle_builtin(int *i, char **argv, char *input, char *av0, int *status);
 
 /* builtin funcs declarations */
-int _cdd(char **args, char *input);
-int _exitt(char **argv, char *input);
-int _envv(char **argv, char *input);
+int _cdd(char **args, char *input, int *status);
+int _exitt(char **argv, char *input, int *status);
+int _envv(char **argv, char *input, int *status);
 
 /* builtin errors */
 void cd_err(int *i, char *av0, char *input, char **argv, int *status);
