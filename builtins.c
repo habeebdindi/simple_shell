@@ -22,7 +22,7 @@ int num_builtins(void)
  */
 int handle_builtin(int *i, char **argv, char *input, char *av0, int *status)
 {
-	int (*builtin_func[]) (char **, char *) = {_cdd, _envv, _exitt};
+	int (*builtin_func[]) (char **, char *, int *status) = {_cdd, _envv, _exitt};
 	char *builtin_arr[] = {"cd", "env", "exit"};
 	int j, ret;
 
@@ -30,7 +30,7 @@ int handle_builtin(int *i, char **argv, char *input, char *av0, int *status)
 	{
 		if (strcmp(argv[0], builtin_arr[j]) == 0)
 		{
-			ret = ((*builtin_func[j])(argv, input));
+			ret = ((*builtin_func[j])(argv, input, status));
 			switch (ret)
 			{
 				case 0:
@@ -51,9 +51,10 @@ int handle_builtin(int *i, char **argv, char *input, char *av0, int *status)
  * _envv - prints the environment variables.
  * @argv: an array of pointers to the env variables.
  * @input: user input to shell.
+ * @status: exit status of last process.
  * Return: 0 on success, 1 on failure.
  */
-int _envv(char **argv, char *input)
+int _envv(char **argv, char *input, __attribute__((unused))int *status)
 {
 	char **env = environ;
 
@@ -74,21 +75,23 @@ int _envv(char **argv, char *input)
  * _exitt - exits the shell.
  * @argv: pointer to a pointer to an array of parsed input.
  * @input: buffer to the command.
+ * @status: exit status of last process.
  * Return: doesn't return.
  */
-int _exitt(char **argv, char *input)
+int _exitt(char **argv, char *input, int *status)
 {
 	free(argv);
 	free(input);
-	exit(0);
+	exit(*status);
 }
 /**
  * _cdd - changes directory.
  * @args: pointer to a pointer to an array of parsed input.
  * @input: buffer to the command.
+ * @status: exit status of last process.
  * Return: -1 on failure and 0 on success.
  */
-int _cdd(char **args, char *input)
+int _cdd(char **args, char *input, __attribute__((unused))int *status)
 {
 	char *home;
 

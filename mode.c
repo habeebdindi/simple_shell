@@ -8,7 +8,7 @@
 void mode_run(char *av0, int *i)
 {
 	char *prompt = "#cisfun$ ", *c, *input, **argv;
-	int status;
+	int status = 0;
 
 	if (!isatty(0))
 	{
