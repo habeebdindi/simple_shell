@@ -37,7 +37,6 @@ void mode_run(char *av0, int *i);
 
 /* handles the path */
 char *getpath(char *command);
-char *fullpath_cmd(char *command);
 void err_clean(int *i, char *av0, char *input, char **argv, int *status);
 
 /* string manipulation */

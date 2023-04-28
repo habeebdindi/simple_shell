@@ -7,7 +7,7 @@
  */
 int main(__attribute__((unused)) int ac, char **av)
 {
-	int loop_track = 1;
+	int loop_track = 0;
 
 	signal(SIGINT, SIG_IGN);
 	while (1)

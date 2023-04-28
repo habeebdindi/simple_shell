@@ -12,11 +12,14 @@ char *getpath(char *command)
 	if (!command)
 		return (NULL);
 	if (access(command, F_OK) == 0)
-		return (fullpath_cmd(command));
-
+	{
+		fullpath = malloc(_strlen(command) + 1);
+		if (!fullpath)
+			return (NULL);
+		_strcpy(fullpath, command);
+		return (fullpath);
+	}
 	path = getenv("PATH");
-	if (!path)
-		return (NULL);
 	path_copy = malloc(_strlen(path) + 1);
 	if (!path_copy)
 		return (NULL);
@@ -66,20 +69,4 @@ void err_clean(int *i, char *av0, char *input, char **argv, int *status)
 	free(input);
 	if (!isatty(0))
 		*status = 127;
-}
-
-/**
- * fullpath_cmd - checks if a user typed in the fullpath of a command.
- * @command: the command.
- * Return: a pointer to the fullpath on success or null on failure.
- */
-char *fullpath_cmd(char *command)
-{
-	char *fullpath;
-
-	fullpath = malloc(_strlen(command) + 1);
-	if (!fullpath)
-		return (NULL);
-	_strcpy(fullpath, command);
-	return (fullpath);
 }
