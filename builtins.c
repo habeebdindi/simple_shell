@@ -84,7 +84,8 @@ int _exitt(char **argv, char *input, int *status)
 {
 	if (argv[1])
 	{
-		if (_atoi(argv[1]) >= 0 && _strcmp(argv[1], "0") == 0)
+		if (_atoi(argv[1]) > 0 ||
+		    (_atoi(argv[1]) == 0 && _strcmp(argv[1], "0") == 0))
 			*status = _atoi(argv[1]);
 		else
 		{
@@ -105,22 +106,21 @@ int _exitt(char **argv, char *input, int *status)
  */
 int _cdd(char **args, char *input, __attribute__((unused))int *status)
 {
-	char *home;
+	char *home, buf[1024];
 
 	if (args[1] == NULL)
 	{
 		home = getenv("HOME");
 		if (!home || chdir(home) != 0)
-		{
 			return (-1);
-		}
-
 	}
 	else
 		if (chdir(args[1]) != 0)
-		{
 			return (-1);
-		}
+
+	if (getcwd(buf, sizeof(buf)) != NULL)
+		if(!isatty(0))
+			write(STDIN_FILENO, buf, _strlen(buf));
 	free(args);
 	free(input);
 	return (0);
