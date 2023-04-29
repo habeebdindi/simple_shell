@@ -17,10 +17,10 @@ extern char **environ;
 
 /* The prototypes declared here are not in any order */
 
-
 /* helpers, custom implementation of disallowed funcs */
 char *_memset(char *s, char b, unsigned int n);
 char *itoa(int i, char b[]);
+int _atoi(const char *str);
 
 /* printing and parsing */
 void print_prompt(char *prompt);
@@ -58,6 +58,7 @@ int _envv(char **argv, char *input, int *status);
 
 /* builtin errors */
 void cd_err(int *i, char *av0, char *input, char **argv, int *status);
+void exit_err(int *i, char *av0, char *input, char **argv, int *status);
 void env_err(char *input, char **argv, int *status);
 
 #endif /* MAIN_H */

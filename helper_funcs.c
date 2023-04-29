@@ -51,3 +51,30 @@ char *itoa(int i, char b[])
 	} while (i);
 	return (b);
 }
+
+/**
+ * _atoi - conv string to char.
+ * @str: the string to convert to char.
+ * Return: the converted integer, if it can't be conv, 0.
+ */
+int _atoi(const char *str)
+{
+	int sign = 1;
+	int num = 0;
+
+	while (*str == ' ')
+		str++;
+	if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		num = num * 10 + (*str - '0');
+		str++;
+	}
+	return (sign * num);
+}

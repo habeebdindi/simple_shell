@@ -41,6 +41,8 @@ int handle_builtin(int *i, char **argv, char *input, char *av0, int *status)
 				case -1:
 					cd_err(i, av0, input, argv, status);
 					return (0);
+				case 2:
+					exit_err(i, av0, input, argv, status);
 			}
 		}
 	}
@@ -80,6 +82,16 @@ int _envv(char **argv, char *input, __attribute__((unused))int *status)
  */
 int _exitt(char **argv, char *input, int *status)
 {
+	if (argv[1])
+	{
+		if (_atoi(argv[1]) >= 0 && _strcmp(argv[1], "0") == 0)
+			*status = _atoi(argv[1]);
+		else
+		{
+			*status = 2;
+			return (2);
+		}
+	}
 	free(argv);
 	free(input);
 	exit(*status);
